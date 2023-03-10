@@ -22,7 +22,7 @@ searchBox.addEventListener("submit", e =>{
     e.preventDefault();
     if(query !== "") {
         page = 1;
-        searchRequest(query.value);
+        searchRequest(query.value, page);
     }
 })
 
@@ -52,5 +52,6 @@ function searchRequest(query, page) {
 
         // 새로 생성
 
+        console.log(response);
     });
 }

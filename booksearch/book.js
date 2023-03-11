@@ -36,6 +36,7 @@ function searchRequest(query, page) {
         },
     })
     .done((response) => {
+
         // container 안에
         /*
             <div class="container">
@@ -51,7 +52,56 @@ function searchRequest(query, page) {
         */
 
         // 새로 생성
-
         console.log(response);
+        // console.log(response.documents[0].title);
+        const container = document.querySelector(".container");
+        container.innerText = ""; 
+        let result = response.documents;
+        
+        for(let i=0; i<result.length; i++) {
+            const resultCard = document.createElement("div");
+            resultCard.setAttribute("class", "result-card");
+    
+            const bookImg = document.createElement("img");
+            bookImg.setAttribute("class", "book-img");
+            bookImg.src = result[i].thumbnail;
+            resultCard.appendChild(bookImg);
+    
+            const bookTitle = document.createElement("h4");
+            bookTitle.setAttribute("class", "book-title");
+            bookTitle.innerText = result[i].title;
+            resultCard.appendChild(bookTitle);
+    
+            const price = document.createElement("span");
+
+            if(result[i].sale_price > 0){
+                price.setAttribute("class", "price");
+                price.innerText = result[i].sale_price + "원";
+            }
+            else{
+                price.setAttribute("class", "zero");
+                price.innerText = "절판";
+            }
+            resultCard.appendChild(price);
+    
+            const bookInfo = document.createElement("p");
+            bookInfo.setAttribute("class", "book-info");
+
+            resultCard.appendChild(bookInfo);
+
+            const author = document.createElement("span");
+            author.setAttribute("class", "author");
+            const publisher = document.createElement("span");
+            publisher.setAttribute("class", "publisher");
+
+            author.innerText = result[i].authors;
+            publisher.innerText = " | "+result[i].publisher;
+
+            bookInfo.appendChild(author);
+            bookInfo.appendChild(publisher);
+            
+    
+            container.appendChild(resultCard);
+        }
     });
 }

@@ -28,7 +28,7 @@ searchBox.addEventListener("submit", e =>{
 
 function searchRequest(query, page) {
     $.ajax({
-        "url": `https://dapi.kakao.com/v3/search/book?query=${query}&page=${page}&size=10&target=title`,
+        "url": `https://dapi.kakao.com/v3/search/book?query=${query}&page=${page}&size=20&target=title`,
         "method": "GET",
         "timeout": 0,
         "headers": {
@@ -37,23 +37,7 @@ function searchRequest(query, page) {
     })
     .done((response) => {
 
-        // container 안에
-        /*
-            <div class="container">
-        <div class="result-card">
-            <img class="book-img" src="">
-            <h4 class="book-title">도서제목</h4>
-            <p class="book-description">도서상세정보</p>
-            <span class="price">10000원</span>
-            <p class="book-info">
-            <span class="author">저자</span>|<span class="publisher">출판사</span>
-            </p>
-        </div>
-        */
-
-        // 새로 생성
         console.log(response);
-        // console.log(response.documents[0].title);
         const container = document.querySelector(".container");
         container.innerText = ""; 
         let result = response.documents;
@@ -95,7 +79,7 @@ function searchRequest(query, page) {
             publisher.setAttribute("class", "publisher");
 
             author.innerText = result[i].authors;
-            publisher.innerText = " | "+result[i].publisher;
+            publisher.innerText = "|"+result[i].publisher;
 
             bookInfo.appendChild(author);
             bookInfo.appendChild(publisher);
@@ -103,5 +87,41 @@ function searchRequest(query, page) {
     
             container.appendChild(resultCard);
         }
+        console.log(page);
+
+        const pageMove = document.querySelector(".move-page");
+        pageMove.innerText = "";
+
+        const backBtn = document.createElement("img");
+        
+        if(page > 1) {
+            backBtn.setAttribute("class", "backBtn");
+            backBtn.setAttribute("src",`https://em-content.zobj.net/thumbs/160/microsoft/54/leftwards-black-arrow_2b05.png`);
+
+            backBtn.addEventListener("click", e =>{
+                page --;
+                searchRequest(query, page);
+            })
+        }
+
+        pageMove.append(backBtn);
+
+
+        pageMove.append(`${page} / ${Math.ceil(response.meta.pageable_count/20)}`);
+
+        const nextBtn = document.createElement("img");
+        
+        if(response.meta.is_end === false) {
+            nextBtn.setAttribute("class", "nextBtn");
+            nextBtn.setAttribute("src",`https://em-content.zobj.net/thumbs/160/microsoft/54/black-rightwards-arrow_27a1.png`);
+
+            nextBtn.addEventListener("click", e =>{
+                page ++;
+                searchRequest(query, page);
+            })
+        }
+
+        pageMove.append(nextBtn);
+
     });
 }

@@ -11,8 +11,12 @@ h1 {
     margin: 50px;
 }
 
+.main {
+    width: fit-content;
+    margin: auto;
+}
+
 .main>li {
-    margin: 0 500px 0 500px;
     font-size: x-large;
 }
 

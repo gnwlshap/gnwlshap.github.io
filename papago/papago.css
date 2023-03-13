@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin: 20px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.inputBox {
+    border: solid 1px;
+    margin: 50px;
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    font-size: x-large;
+    vertical-align: top;
+    
+}
+
+.outputBox {
+    border: solid 1px;
+    margin: 50px;
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    font-size: x-large;
+}

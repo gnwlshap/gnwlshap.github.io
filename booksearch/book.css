@@ -37,7 +37,7 @@ h1 {
 }
 
 .book-title {
-    height: 44px;
+    height: 45px;
     margin: 0 10px 0 10px;
     overflow: hidden;
 }
@@ -46,6 +46,10 @@ h1 {
     width: 120px;
     height: 174px;
     margin-top: 6px;
+}
+
+.book-img:hover {
+    cursor: pointer;
 }
 
 .price {
@@ -93,8 +97,8 @@ h1 {
     background-repeat: no-repeat;
     border: none;
     cursor: pointer;
-  }
+}
 
-  .search-btn:hover {
+.search-btn:hover {
     background-color: darkgray;
-  }
+}

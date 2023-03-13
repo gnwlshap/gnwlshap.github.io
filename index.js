@@ -1,20 +1,16 @@
 const main = document.querySelector(".main");
 
-const li1 = document.createElement("li");
-li1.setAttribute("class", "li");
-li1.setAttribute("id", "bookSearch");
-li1.innerText = "booksearch";
-li1.addEventListener("click", e =>{
-    location.href = "https://kimdonghoon.site/booksearch/";
-})
-main.append(li1);
+function addList(name, href) {
+    const li = document.createElement("li");
+    li.setAttribute("class", "li");
+    li.setAttribute("id", name);
+    li.innerText = name;
+    li.addEventListener("click", e =>{
+        location.href = href;
+    })
+    main.append(li);
+}
 
-const li2 = document.createElement("li");
-li2.setAttribute("class", "li");
-li2.setAttribute("id", "omok");
-li2.innerText = "omok";
-li2.addEventListener("click", e =>{
-    const a = e.target.innerText;
-    location.href = "https://kimdonghoon.site/omok/";
-})
-main.append(li2);
+addList("booksearch", "https://kimdonghoon.site/booksearch/");
+addList("omok", "https://kimdonghoon.site/omok/");
+addList("papago", "https://kimdonghoon.site/papago/")

@@ -1,6 +1,12 @@
 const inputBox = document.querySelector(".inputBox");
 
+const submit = document.querySelector(".submit");
 
+submit.addEventListener("click", e =>{
+    e.preventDefault();
+    console.log(inputBox.value);
+    papago(inputBox.value);
+})
 
 function papago(text) {
     $.ajax({
@@ -13,7 +19,7 @@ function papago(text) {
         "X-Naver-Client-Secret": "3upf9Tlcm3"
         },
     })
-    .done(function (response) {
+    .done((response) => {
         console.log(response);
     });
 };

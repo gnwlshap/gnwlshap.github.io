@@ -23,7 +23,6 @@ searchBox.addEventListener("submit", e =>{
     e.preventDefault();
     if(query !== "") {
         page = 1;
-        setSize(query, page);
         searchRequest(query.value, page);
         query.value = "";
     }
@@ -51,7 +50,6 @@ function searchRequest(query, page) {
         
                 const bookImg = document.createElement("img");
                 bookImg.setAttribute("class", "book-img");
-                // bookImg.setAttribute("href", result[i].url)
                 bookImg.src = result[i].thumbnail;
                 bookImg.addEventListener("click", e =>{
                     location.href = result[i].url;

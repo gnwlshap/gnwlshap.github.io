@@ -29,26 +29,6 @@ searchBox.addEventListener("submit", e =>{
     }
 })
 
-function setSize(query, page) {
-    $.ajax({
-        "url": `https://dapi.kakao.com/v3/search/book?query=${query}&page=${page}&size=20&target=title`,
-        "method": "GET",
-        "timeout": 0,
-        "headers": {
-            "Authorization": "KakaoAK 5e0b5e06e4fb88f8a3728d0c4aa130eb"
-        },
-    })
-    .done((response) => {
-        let result = response.documents;
-        
-        for(let i=0; i<result.length; i++) {
-            if(result[i].thumbnail === ""){
-                size ++;
-            }
-        }
-    })
-}
-
 function searchRequest(query, page) {
     $.ajax({
         "url": `https://dapi.kakao.com/v3/search/book?query=${query}&page=${page}&size=${size}&target=title`,
